@@ -32,11 +32,11 @@ y = data[:, [1]]
 theta = np.zeros( (2, 1) )
 
 # ========================  OPGAVE 1 ========================
-print ("\nOpgave 1: draw_graph")
-print ("Tekenen van de scatter plot van de data...")
-if (len(sys.argv)>1 and sys.argv[1]=='skip'): print ('Slaan we over!')
-else: draw_graph(data)
-input ("Druk op return om verder te gaan...");
+# print ("\nOpgave 1: draw_graph")
+# print ("Tekenen van de scatter plot van de data...")
+# if (len(sys.argv)>1 and sys.argv[1]=='skip'): print ('Slaan we over!')
+# else: draw_graph(data)
+# input ("Druk op return om verder te gaan...");
 
 # ========================  OPGAVE 2 ========================
 print ("\nOpgave 2: compute_cost")

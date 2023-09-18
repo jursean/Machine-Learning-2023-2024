@@ -19,9 +19,8 @@ def draw_graph(data):
     # Maak gebruik van pytplot.scatter om dit voor elkaar te krijgen.
 
     #YOUR CODE HERE
-    fig, ax = plt.subplots()
-    ax.set_xlabel("Populatie (10k personen)")
-    ax.set_ylabel("Winst vervoerder in €10.000")
+    plt.xlabel("Populatie (10k personen)")
+    plt.ylabel("Winst vervoerder in €10.000")
     plt.scatter(x=np.array(data[:, 0]), y=np.array(data[:, 1]))
     plt.show()
     pass
@@ -51,7 +50,20 @@ def compute_cost(X, y, theta):
     J = 0
 
     # YOUR CODE HERE
+    # 1. bepaal het aantal datapunten
+    m = len(X)
 
+    # 2. bepaal de voorspelling (dus elk punt van X maal de huidige waarden van theta)
+    predictions = np.dot(X, theta)
+
+    # 3. bereken het verschil tussen deze voorspelling en de werkelijke waarde
+    squared_errors = (predictions - y)
+
+    # 4. kwadrateer dit verschil
+    squared_errors = squared_errors ** 2
+
+    # 5. tal al deze kwadraten bij elkaar op en deel dit door twee keer het aantal datapunten
+    J = (1 / (2 * m)) * np.sum(squared_errors)
     return J
 
 
