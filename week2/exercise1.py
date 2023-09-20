@@ -39,12 +39,12 @@ theta = np.zeros( (2, 1) )
 # input ("Druk op return om verder te gaan...");
 
 # ========================  OPGAVE 2 ========================
-print ("\nOpgave 2: compute_cost")
-J = compute_cost(X, y, theta);
-print (f"De gevonden waarde van J is {J}")
-print ("Deze waarde zou rond de 32.07 moeten liggen")
-
-input ("Druk op return om verder te gaan...");
+# print ("\nOpgave 2: compute_cost")
+# J = compute_cost(X, y, theta);
+# print (f"De gevonden waarde van J is {J}")
+# print ("Deze waarde zou rond de 32.07 moeten liggen")
+#
+# input ("Druk op return om verder te gaan...");
 
 # ========================  OPGAVE 3 ========================
 print ("\nOpgave 3a: gradient_descent")

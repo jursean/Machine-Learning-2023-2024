@@ -90,7 +90,16 @@ def gradient_descent(X, y, theta, alpha, num_iters):
     costs = []
 
     # YOUR CODE HERE
-
+    xTrans = X.transpose()
+    for i in range(0, num_iters):
+        prediction = np.dot(X, theta)
+        loss = prediction - y
+        cost = np.sum(loss ** 2) / (2 * m)
+        print("Iteration %d | Cost: %f" % (i, cost))
+        # avg gradient per example
+        gradient = np.dot(xTrans, loss) / m
+        # update
+        theta = theta - alpha * gradient
     # aan het eind van deze loop retourneren we de nieuwe waarde van theta
     # (wat is de dimensionaliteit van theta op dit moment?).
 
