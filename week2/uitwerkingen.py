@@ -45,7 +45,7 @@ def compute_cost(X, y, theta):
     #    2. bepaal de voorspelling (dus elk punt van X maal de huidige waarden van theta)
     #    3. bereken het verschil tussen deze voorspelling en de werkelijke waarde
     #    4. kwadrateer dit verschil
-    #    5. tal al deze kwadraten bij elkaar op en deel dit door twee keer het aantal datapunten
+    #    5. tel al deze kwadraten bij elkaar op en deel dit door twee keer het aantal datapunten
 
     J = 0
 
@@ -54,17 +54,18 @@ def compute_cost(X, y, theta):
     m = len(X)
 
     # 2. bepaal de voorspelling (dus elk punt van X maal de huidige waarden van theta)
-    predictions = np.dot(X, theta)
+    # voorspelling
+    voorspelling = np.dot(X, theta)
 
     # 3. bereken het verschil tussen deze voorspelling en de werkelijke waarde
-    squared_errors = (predictions - y)
+    # squared error
+    verschil = (voorspelling - y)
 
     # 4. kwadrateer dit verschil
-    squared_errors = squared_errors ** 2
+    verschil = verschil ** 2
 
-    # 5. tal al deze kwadraten bij elkaar op en deel dit door twee keer het aantal datapunten
-    J = (1 / (2 * m)) * np.sum(squared_errors)
-    return J
+    # 5. tel al deze kwadraten bij elkaar op en deel dit door twee keer het aantal datapunten
+    return (1 / (2 * m)) * np.sum(verschil)
 
 
 
@@ -86,22 +87,37 @@ def gradient_descent(X, y, theta, alpha, num_iters):
     #   4. update de i-de parameter van theta, namelijk door deze te verminderen met
     #      alpha keer het gemiddelde van de som van de vermenigvuldiging uit 3
 
+    #X omzetten van 1-d naar 2-d:
+    # voorbeeld:"([1, 2, 3, 4, 5]) > ([[1, 2, 3],
+    #                                 [4, 5, 6]])
+
     m,n = X.shape
     costs = []
 
     # YOUR CODE HERE
-    xTrans = X.transpose()
-    for i in range(0, num_iters):
-        prediction = np.dot(X, theta)
-        loss = prediction - y
-        cost = np.sum(loss ** 2) / (2 * m)
-        print("Iteration %d | Cost: %f" % (i, cost))
-        # avg gradient per example
-        gradient = np.dot(xTrans, loss) / m
-        # update
+
+    #Omwisselen van row en column
+    theta = np.transpose(theta)
+
+    for i in range(num_iters):
+        # 1: bepaal de voorspelling voor het datapunt, gegeven de huidige waarde van theta
+        voorspelling = np.dot(X, theta)
+
+        # 2: bepaal het verschil tussen deze voorspelling en de werkelijke waarde
+        verschil = voorspelling - y
+
+        # 3: vermenigvuldig dit verschil met de i-de waarde van X
+        gradient = np.dot(X.T, verschil) / m
+
+        # 4: update de i-de parameter van theta, namelijk door deze te verminderen met alpha keer het gemiddelde van de som van de vermenigvuldiging uit 3
         theta = theta - alpha * gradient
-    # aan het eind van deze loop retourneren we de nieuwe waarde van theta
-    # (wat is de dimensionaliteit van theta op dit moment?).
+
+        # Bijhouden costs voor Opgave 3b
+        kost = np.sum(verschil ** 2) / (2 * m)
+        costs.append(kost)
+
+        # aan het eind van deze loop retourneren we de nieuwe waarde van theta
+        # (wat is de dimensionaliteit van theta op dit moment?).
 
     return theta, costs
 
@@ -109,7 +125,11 @@ def gradient_descent(X, y, theta, alpha, num_iters):
 def draw_costs(data): 
     # OPGAVE 3b
     # YOUR CODE HERE
-    pass
+    plt.xlabel("iteraties")
+    plt.ylabel("J(0)")
+    plt.ylim(4, 7)
+    plt.plot(data)
+    plt.show()
 
 def contour_plot(X, y):
     #OPGAVE 4
@@ -131,7 +151,12 @@ def contour_plot(X, y):
 
     J_vals = np.zeros( (len(t2), len(t2)) )
 
-    #YOUR CODE HERE 
+    #YOUR CODE HERE
+    array = np.ndarray
+
+    for i in range(len(t1)):
+        for j in range(len(t2)):
+            J_vals[i][j] = compute_cost(X, y, np.array([[t1[i], t2[j]]]).T)
 
     surf = ax.plot_surface(T1, T2, J_vals, rstride=1, cstride=1, cmap=cm.coolwarm, linewidth=0, antialiased=False)
 
