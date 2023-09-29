@@ -119,6 +119,7 @@ def gradient_descent(X, y, theta, alpha, num_iters):
         # aan het eind van deze loop retourneren we de nieuwe waarde van theta
         # (wat is de dimensionaliteit van theta op dit moment?).
 
+    print(theta.shape)
     return theta, costs
 
 
@@ -142,7 +143,7 @@ def contour_plot(X, y):
     # transformatie moet toepassen of niet. Let op: je moet computeCost zelf *niet* aanpassen.
 
     fig = plt.figure()
-    ax = fig.gca(projection = '3d')
+    ax = fig.add_subplot(111, projection = '3d')
     jet = plt.get_cmap('jet')
 
     t1 = np.linspace(-10, 10, 100)
