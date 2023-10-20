@@ -127,6 +127,7 @@ def nn_check_gradients(Theta1, Theta2, X, y):
     Delta2 = np.zeros(Theta1.shape)
     Delta3 = np.zeros(Theta2.shape)
     m = X.shape[0]  # voorbeeldwaarde; dit moet je natuurlijk aanpassen naar de echte waarde van m
+    y = get_y_matrix(y, m)
     for i in range(m):
         a1, a2, a3, z2, z3 = forward_propagation(X[i:i + 1], Theta1, Theta2)
         delta3 = a3 - y[i:i + 1]
