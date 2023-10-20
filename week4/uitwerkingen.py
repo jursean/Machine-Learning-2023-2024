@@ -9,7 +9,6 @@ def plot_number(nrVector):
     # laatste index het langzaamst; als je dat niet doet, wordt het plaatje
     # gespiegeld en geroteerd. Zie de documentatie op
     # https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html
-    pass
     nrVector = np.reshape(nrVector, (20,20), order="F")
     plt.matshow(nrVector)
     plt.show()
