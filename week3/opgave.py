@@ -5,10 +5,9 @@ import pandas as pd
 
 dataset = load_iris()
 
-
 p = pd.DataFrame(data=dataset.data, columns=dataset.feature_names)
 target = dataset.target
-target = np.where(target < 2, 0, 1)  # Convert to binary
+target = np.where(target < 2, 0, 1)
 df = pd.concat([p, pd.DataFrame({'target': target})], axis=1)
 print(df.head())
 
@@ -44,12 +43,9 @@ theta = np.ones(n)
 # De kosten bereken
 alpha = 0.01
 for i in range(1500):
-    voorspelling = np.dot(X, theta)
-    voorspelling = sigmoid(voorspelling)
+    voorspelling = sigmoid(np.dot(X, theta))
 
-    loss = -np.mean(y * np.log(voorspelling) + (1 - y) * np.log(1 - voorspelling))
-
+    kosten = np.mean(-y * np.log(voorspelling) - (1 - y) * np.log(1 - voorspelling))
     theta -= alpha * (np.dot(X.T, (voorspelling - y)) / len(y))
 
-    if i % 100 == 0:
-        print(f"Iteratie {i}: loss = {loss}")
+    print(f"{i}: kosten: {kosten}")

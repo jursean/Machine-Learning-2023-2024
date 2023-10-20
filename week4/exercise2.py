@@ -62,74 +62,72 @@ num_labels = 10;          # 10 labels, 1 tot en met 10
 
 # ========================  OPGAVE 1 ======================== 
 rnd = randint(0, X.shape[0])
-# print (f"Tekenen van data op regel {rnd}")
-# if (len(sys.argv)>1 and sys.argv[1]=='skip') :
-#     print ("Slaan we over")
-# else:
-#     hyp = y[rnd]
-#     if (hyp==10): hyp=0
-#     print (f"Dit zou een {hyp} moeten zijn.")
-#     plot_number(X[rnd,:])
-#
-# input ("Druk op Return om verder te gaan...")
+print (f"Tekenen van data op regel {rnd}")
+if (len(sys.argv)>1 and sys.argv[1]=='skip') :
+    print ("Slaan we over")
+else:
+    hyp = y[rnd]
+    if (hyp==10): hyp=0
+    print (f"Dit zou een {hyp} moeten zijn.")
+    plot_number(X[rnd,:])
+
+input ("Druk op Return om verder te gaan...")
 
 
 # ========================  OPGAVE 2a ========================
-# print ("")
-# print ("Sigmoid-functie met een relatief groot negatief getal zou bijna 0 moeten zijn")
-# print (f"Sigmoid van -10 = {sigmoid(-10)}")
-#
-# print ("Sigmoid-functie van 0 zou 0,5 moeten zijn.")
-# print (f"Sigmoid van 0 = {sigmoid(0)}")
-#
-# print ("Sigmoid-functie met een relatief groot positief getal zou bijna 1 moeten zijn")
-# print (f"Sigmoid van 10 = {sigmoid(10)}")
-#
-# print ("Simoid aangeroepen met 1×3 vector [-10, 0, 10]")
-# print (sigmoid(np.matrix( [-10, 0, 10] )))
-# print ("Simoid aangeroepen met 3×1 vector [-10, 0, 10]")
-# print (sigmoid(np.matrix( ([-10], [0], [10]) )))
-#
-# input ("Druk op Return om verder te gaan...")
+print ("")
+print ("Sigmoid-functie met een relatief groot negatief getal zou bijna 0 moeten zijn")
+print (f"Sigmoid van -10 = {sigmoid(-10)}")
+
+print ("Sigmoid-functie van 0 zou 0,5 moeten zijn.")
+print (f"Sigmoid van 0 = {sigmoid(0)}")
+
+print ("Sigmoid-functie met een relatief groot positief getal zou bijna 1 moeten zijn")
+print (f"Sigmoid van 10 = {sigmoid(10)}")
+
+print ("Simoid aangeroepen met 1×3 vector [-10, 0, 10]")
+print (sigmoid(np.matrix( [-10, 0, 10] )))
+print ("Simoid aangeroepen met 3×1 vector [-10, 0, 10]")
+print (sigmoid(np.matrix( ([-10], [0], [10]) )))
+
+input ("Druk op Return om verder te gaan...")
 
 # ========================  OPGAVE 2b ========================
-# print ("")
-# print ("Aanroepen van de methode predict_number met de y-vector")
-# print ("en het weergeven van de dimensionaliteit van het resultaat")
-# matr = get_y_matrix(y, m)
-# print (matr.shape)
-# print ("Dit zou (5000,10) moeten zijn.")
-# input ("Druk op Return om verder te gaan.")
+print ("")
+print ("Aanroepen van de methode predict_number met de y-vector")
+print ("en het weergeven van de dimensionaliteit van het resultaat")
+matr = get_y_matrix(y, m)
+print (matr.shape)
+print ("Dit zou (5000,10) moeten zijn.")
+input ("Druk op Return om verder te gaan.")
 
 
 # ========================  OPGAVE 2c ========================
-# print("")
-# print ("Zetten van initiële waarden van de Theta's.")
-# Theta1 = initialize_random_weights(input_layer_size, hidden_layer_size)
-# Theta2 = initialize_random_weights(hidden_layer_size, num_labels)
-#
-# print ("Aanroepen van de methode predict_number")
-# pred = np.argmax(predict_number(Theta1,Theta2,X), axis=1).reshape(m,1)
-# cost = compute_cost(Theta1, Theta2, X, y)
-#
-# print (f"De kosten die gemoeid zijn met de huidige waarden van Theta1 en Theta2 zijn {cost}")
-# print ("Dit zou zo rond de 7 moeten liggen.")
-# acc = np.count_nonzero([pred - y == 0])
-# print (f"Correct geclassificeerd: {acc}")
-# print (f"De huidige accuratessse van het netwerk is {100 * acc/ m} %")
-# input ("Druk op Return om verder te gaan.")
-
-# ========================  OPGAVE 3 ========================
-# print ("")
-# print ("Aanroepen van de methode sigmoid_gradient met de waarden [-1, -0.5, 0, 0.5, 1 ]")
-# print (sigmoid_gradient(np.array([ [-1, -0.5, 0, 0.5, 1 ] ])))
-# print ("Dit zou als resultaat de volgende lijst moeten hebben")
-# print ("[ 0.19661193  0.23500371  0.25  0.23500371  0.19661193]")
-# input ("Druk op Return om verder te gaan...")
-
-print ("")
+print("")
+print ("Zetten van initiële waarden van de Theta's.")
 Theta1 = initialize_random_weights(input_layer_size, hidden_layer_size)
 Theta2 = initialize_random_weights(hidden_layer_size, num_labels)
+
+print ("Aanroepen van de methode predict_number")
+pred = np.argmax(predict_number(Theta1,Theta2,X), axis=1).reshape(m,1)
+cost = compute_cost(Theta1, Theta2, X, y)
+
+print (f"De kosten die gemoeid zijn met de huidige waarden van Theta1 en Theta2 zijn {cost}")
+print ("Dit zou zo rond de 7 moeten liggen.")
+acc = np.count_nonzero([pred - y == 0])
+print (f"Correct geclassificeerd: {acc}")
+print (f"De huidige accuratessse van het netwerk is {100 * acc/ m} %")
+input ("Druk op Return om verder te gaan.")
+
+# ========================  OPGAVE 3 ========================
+print ("")
+print ("Aanroepen van de methode sigmoid_gradient met de waarden [-1, -0.5, 0, 0.5, 1 ]")
+print (sigmoid_gradient(np.array([ [-1, -0.5, 0, 0.5, 1 ] ])))
+print ("Dit zou als resultaat de volgende lijst moeten hebben")
+print ("[ 0.19661193  0.23500371  0.25  0.23500371  0.19661193]")
+input ("Druk op Return om verder te gaan...")
+
+print ("")
 print ("Aanroepen van de methode nn_check_gradients met initiële waarden van de Theta's.")
 g1, g2 = nn_check_gradients(Theta1, Theta2, X, y)
 print (f"De totale som van de eerste gradiënt-matrix is {sum(g1)}")
