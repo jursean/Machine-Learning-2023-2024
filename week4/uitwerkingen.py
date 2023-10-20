@@ -90,18 +90,12 @@ def compute_cost(Theta1, Theta2, X, y):
     # om deze om te zetten naar een matrix.
     m, n = X.shape
 
-    prediction = predict_number(Theta1, Theta2, X)
-    # print(f"prediction: {prediction}")
-    target = get_y_matrix(y, m)
-    # print(f"target: {target}")
+    voorspelling = predict_number(Theta1, Theta2, X)
+    y_matrix = get_y_matrix(y, m)
 
-    cost_matrix = -target * np.log(prediction) - (1 - target) * np.log(1 - prediction)
+    cost_matrix = -y_matrix * np.log(voorspelling) - (1 - y_matrix) * np.log(1 - voorspelling)
 
-    # print(f"cost_matrix:  {cost_matrix}")
-
-    total_cost = np.sum(cost_matrix)
-
-    cost = total_cost / m
+    cost = np.sum(cost_matrix) / m
 
     return cost
 
@@ -113,7 +107,7 @@ def sigmoid_gradient(z):
     # Zie de opgave voor de exacte formule. Zorg ervoor dat deze werkt met
     # scalaire waarden en met vectoren.
     sg = sigmoid(z)
-    return sg * (1 - sg)[0]
+    return sg * (1 - sg)
 
 # ==== OPGAVE 3b ====
 def forward_propagation(X, Theta1, Theta2):
@@ -132,14 +126,13 @@ def nn_check_gradients(Theta1, Theta2, X, y):
     # Zie het stappenplan in de opgaven voor een mogelijke uitwerking.
     Delta2 = np.zeros(Theta1.shape)
     Delta3 = np.zeros(Theta2.shape)
-    m = X.shape[0] #voorbeeldwaarde; dit moet je natuurlijk aanpassen naar de echte waarde van m
-
+    m = X.shape[0]  # voorbeeldwaarde; dit moet je natuurlijk aanpassen naar de echte waarde van m
     for i in range(m):
         a1, a2, a3, z2, z3 = forward_propagation(X[i:i + 1], Theta1, Theta2)
         delta3 = a3 - y[i:i + 1]
-        delta2 = (delta3.dot(Theta2[:, 1:]) * sigmoid_gradient(z2)).T
-        Delta3 += delta3.T.dot(a2)
-        Delta2 += delta2.dot(a1)
+        delta2 = np.dot(delta3, Theta2[:, 1:]) * sigmoid_gradient(z2)
+        Delta3 += np.dot(delta3.T, a2)
+        Delta2 += np.dot(delta2.T, a1)
 
     Delta2_grad = Delta2 / m
     Delta3_grad = Delta3 / m

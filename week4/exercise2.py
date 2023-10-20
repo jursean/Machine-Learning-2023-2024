@@ -121,6 +121,8 @@ input ("Druk op Return om verder te gaan.")
 
 # ========================  OPGAVE 3 ========================
 print ("")
+Theta1 = initialize_random_weights(input_layer_size, hidden_layer_size)
+Theta2 = initialize_random_weights(hidden_layer_size, num_labels)
 print ("Aanroepen van de methode sigmoid_gradient met de waarden [-1, -0.5, 0, 0.5, 1 ]")
 print (sigmoid_gradient(np.array([ [-1, -0.5, 0, 0.5, 1 ] ])))
 print ("Dit zou als resultaat de volgende lijst moeten hebben")
