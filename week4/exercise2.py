@@ -142,7 +142,7 @@ init_params = np.concatenate( (Theta1.flatten(), Theta2.flatten()) )
 args = (X, y)
 print ("")
 print ("Gebruik scipy.optimize.minimize om het netwerk te trainen...")
-res = minimize(nn_cost_function, init_params, args=args, method='CG', callback=callbackF, jac=True, options={'maxiter':60,'disp':True})
+res = minimize(nn_cost_function, init_params, args=args, method='CG', callback=callbackF, jac=True, options={'maxiter':30,'disp':True})
 size = hidden_layer_size * (input_layer_size+1) #voor de bias-node die wel in de matrix zit maar niet geplot moet worden
 res_Theta1 = res['x'][:size].reshape(hidden_layer_size, input_layer_size+1)
 res_Theta2 = res['x'][size:].reshape(num_labels, hidden_layer_size+1)

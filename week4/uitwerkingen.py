@@ -134,8 +134,8 @@ def nn_check_gradients(Theta1, Theta2, X, y):
         delta2 = np.dot(delta3, Theta2[:, 1:]) * sigmoid_gradient(z2)
         Delta3 += np.dot(delta3.T, a2)
         Delta2 += np.dot(delta2.T, a1)
-
     Delta2_grad = Delta2 / m
+
     Delta3_grad = Delta3 / m
 
     return Delta2_grad, Delta3_grad
